@@ -56,7 +56,7 @@ const getData = function () {
           "card",
           "rounded-lg",
           "bg-white",
-          "p-2",
+          "p-3",
           "flex",
           "flex-col",
           "justify-between",
@@ -72,9 +72,9 @@ const getData = function () {
             <p class="font-semibold text-lg">${data.price}€</p>
 
             <div>
-            <a href="./detail.html?id=${data._id}" class="detail-btn bg-xblue py-1 px-3 rounded-lg text-base text-white hover:bg-xdarkblue">Details</a>
+            <a href="./detail.html?id=${data._id}" class="detail-btn bg-xblue py-2 px-4 rounded-lg text-base text-white hover:bg-xdarkblue">Details</a>
 
-            <a href="./back-office.html?id=${data._id}" class="edit-btn bg-xblue py-1 px-3 rounded-lg text-base text-white hover:bg-xdarkblue">Edit</a>
+            <a href="./back-office.html?id=${data._id}" class="edit-btn bg-xblue py-2 px-4 rounded-lg text-base text-white hover:bg-xdarkblue">Edit</a>
             </div>
           </div>
             `;
