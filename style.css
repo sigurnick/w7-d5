@@ -1,12 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 body,html,*{
     font-family: 'Inter', sans-serif;
 }
 
+
+
+
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side,#5cd2c6 94%,#0000) top/9px 9px no-repeat,
+           conic-gradient(#0000 30%,#5cd2c6);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+    animation: spinner-c7wet2 1.2s infinite linear;
+ }
+ 
+ @keyframes spinner-c7wet2 {
+    100% {
+       transform: rotate(1turn);
+    }
+ }
 
 
 

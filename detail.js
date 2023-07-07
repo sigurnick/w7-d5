@@ -1,9 +1,36 @@
 const URL = "https://striveschool-api.herokuapp.com/api/product/";
 const addressBarContent = new URLSearchParams(location.search);
-const eventId = addressBarContent.get("id");
+const productId = addressBarContent.get("id");
+
+
+
+
+//--------------|Show red warnign to user Function|-------------------
+const showRedAlert = function (err) {
+  const redAlert = document.getElementById("red-alert");
+  const textRedAlert = document.getElementById("red-alert-text");
+  textRedAlert.innerText = err;
+  redAlert.classList.remove("hidden");
+};
+//---------------------------------------------------------------------
+//--------------|Show green alert Function|-----------------------------
+const showGreenAlert = function (text) {
+  const greenAlert = document.getElementById("green-alert");
+  const textRedAlert = document.getElementById("green-alert-text");
+  textRedAlert.innerText = text;
+  greenAlert.classList.remove("hidden");
+  const removeAlert = function () {
+    greenAlert.classList.add("hidden");
+  };
+  setTimeout(removeAlert, 5000);
+};
+//-------------------------------------------------------------------
+
+
+
 
 const getItem = function () {
-  fetch(URL + eventId, {
+  fetch(URL + productId, {
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3OWVlN2RhNTNjMTAwMTRhOTY5MDAiLCJpYXQiOjE2ODg3MTU5NjEsImV4cCI6MTY4OTkyNTU2MX0.CsC1w9VTwn-PZbjDXrVueHReS_opsja0HlPcUGeHSxk",
@@ -20,6 +47,13 @@ const getItem = function () {
     })
     .then((detail) => {
       console.log(detail);
+      showGreenAlert("Contenuto caricato");
+
+      const spinner = document.getElementById("spinner-home");
+      spinner.classList.add("hidden");
+
+
+
 
       //--------------------|Insert card into detail page|-----------------------------------
       const newCard = document.createElement("div");
@@ -76,43 +110,47 @@ const getItem = function () {
         `;
 
       cardContainer.appendChild(newCard);
-    //-------------------------------------------------------------------------------------------------------------------
+      //--------------------------------------------------------------------------------------------------------------
 
 
 
 
+      //-------------------------------------------------|Delete item|-----------------------------------------------
+      const deleteButton = document.getElementById("delete-btn");
+      deleteButton.addEventListener("click", function () {
+        let text;
+        if (confirm("Are you sure?") == true) {
+          text = "You pressed OK!";
 
-    //-------------------------------------------------------|Delete item|-----------------------------------------------
-    const deleteButton = document.getElementById('delete-btn')
-    deleteButton.addEventListener('click', function(){
-
-        fetch(URL + eventId, {
-            method: 'DELETE',
+          fetch(URL + productId, {
+            method: "DELETE",
             headers: {
-                Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3OWVlN2RhNTNjMTAwMTRhOTY5MDAiLCJpYXQiOjE2ODg3MTU5NjEsImV4cCI6MTY4OTkyNTU2MX0.CsC1w9VTwn-PZbjDXrVueHReS_opsja0HlPcUGeHSxk",
-              },
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3OWVlN2RhNTNjMTAwMTRhOTY5MDAiLCJpYXQiOjE2ODg3MTU5NjEsImV4cCI6MTY4OTkyNTU2MX0.CsC1w9VTwn-PZbjDXrVueHReS_opsja0HlPcUGeHSxk",
+            },
           })
             .then((res) => {
               if (res.ok) {
-               
-                alert('EVENTO ELIMINATO!')
-                location.assign('index.html')
+                alert("EVENTO ELIMINATO!");
+                location.assign("index.html");
               } else {
-               
-                throw new Error("Problema nell'eliminazione dell'evento")
+                throw new Error("Problema nell'eliminazione dell'evento");
               }
             })
             .catch((err) => {
-              console.log(err)
-            })
-    })
-    //-------------------------------------------------------------------------------------------------------------------
-
+              console.log(err);
+              showRedAlert(err);
+            });
+        } else {
+          text = "You canceled!";
+        }
+      });
+      //-------------------------------------------------------------------------------------------------------
     })
 
     .catch((err) => {
       console.log(err);
+      showRedAlert(err);
     });
 };
 
