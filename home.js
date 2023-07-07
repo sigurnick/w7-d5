@@ -52,6 +52,8 @@ const getData = function () {
       //-------------------------|Insert all cards|----------------------------
       data.forEach((data) => {
         let newCard = document.createElement("div");
+
+        //Card
         newCard.classList.add(
           "card",
           "rounded-lg",
@@ -61,13 +63,16 @@ const getData = function () {
           "flex-col",
           "justify-between",
           "gap-2",
-          "hover:scale-105"
+          "h-[350px]",
+          "hover:scale-110"
         );
+
+          //Card content
         newCard.innerHTML = `
-            <div class="card-img">
-            <img class="rounded-t-lg w-full h-[360px]" src=${data.imageUrl} alt="">
-          </div>
-          <div class="card-text h-full flex flex-col justify-evenl gap-1">
+         
+            <img class="rounded-t-lg object-scale-down h-48 w-96" src=${data.imageUrl} alt="">
+          
+          <div class="card-text flex flex-col justify-end gap-1">
             <h1 class="text-lg  mb-2">${data.name}</h1>
             <p class="font-semibold text-lg">${data.price}€</p>
 
