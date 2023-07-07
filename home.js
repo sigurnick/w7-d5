@@ -63,6 +63,7 @@ const getData = function () {
           "flex-col",
           "justify-between",
           "gap-2",
+          "shadow-md",
           "h-[350px]",
           "hover:scale-110"
         );
