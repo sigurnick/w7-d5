@@ -65,7 +65,7 @@ const getData = function () {
         );
         newCard.innerHTML = `
             <div class="card-img">
-            <img class="rounded-t-lg w-full h-[400px]" src=${data.imageUrl} alt="">
+            <img class="rounded-t-lg w-full h-[360px]" src=${data.imageUrl} alt="">
           </div>
           <div class="card-text h-full flex flex-col justify-evenl gap-1">
             <h1 class="text-lg  mb-2">${data.name}</h1>
